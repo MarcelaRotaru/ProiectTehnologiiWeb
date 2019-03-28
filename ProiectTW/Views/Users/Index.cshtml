@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ProiectTW.Models.User>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+<table class="table">
+	<tr>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Email</th>
+		<th>Password</th>
+		<th>Turn Date</th>
+	</tr>
+	@foreach (var item in Model) {
+	<tr>
+		<td>@Html.DisplayTextFor(ModelItem => item.Id)</td>
+		<td>@Html.DisplayTextFor(ModelItem => item.Username)</td>
+		<td>@Html.DisplayTextFor(ModelItem => item.Email)</td>
+		<td>@Html.DisplayTextFor(ModelItem => item.Password)</td>
+		<td>@Html.DisplayTextFor(ModelItem => item.TurnDate)</td>
+
+
+	</tr>
+	}
+</table>

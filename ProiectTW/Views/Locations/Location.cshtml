@@ -1,25 +1,28 @@
 ﻿@model ProiectTW.Models.Locations
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Location</title>
-   
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta charset="utf-8">
+    <title>Locatii</title>
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPMc3LmWNJjtH3DblyOHNY6zZTggAiGl8&callback=initMap"></script>
     <script type="text/javascript">
 
         var markers = @Html.Raw(ViewBag.Markers);
         window.onload = function () {
+
             var mapOptions = {
-                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
-                zoom: 4,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                center: new google.maps.LatLng(47.6598, 23.545208), //initializare harta
+                zoom: 8,
+                mapTypeId: 'terrain'
             };
+           
             var infoWindow = new google.maps.InfoWindow();
             var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
             for (i = 0; i < markers.length; i++) {
@@ -40,7 +43,7 @@
         }
     </script>
 </head>
-<body>
+<body style="background-image:url(https://images.wallpaperscraft.com/image/house_sea_sunset_138224_1920x1080.jpg); background-repeat:no-repeat;background-size: cover;">
     @using (Html.BeginForm("Home", "Location", FormMethod.Post))
     {
         <div class="container py-4">

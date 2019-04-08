@@ -22,7 +22,7 @@ namespace ProiectTW.Controllers
         {
            UsersStoreContext context = HttpContext.RequestServices.GetService(typeof(ProiectTW.Models.UsersStoreContext)) as UsersStoreContext;
 
-            list =context.GetAllLocations();
+            list =context.GetAllUsersLocations(2);
             string markers = "[";
             foreach (Locations item in list) {
                 markers += "{";

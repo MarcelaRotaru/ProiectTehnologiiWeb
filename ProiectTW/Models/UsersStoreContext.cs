@@ -67,11 +67,44 @@ namespace ProiectTW.Models
                             Latitude = Convert.ToDouble(reader["Latitude"]),
                             Longitude = Convert.ToDouble(reader["Longitude"]),
                             Description = reader["Description"].ToString(),
+                           
                         });
                     }
                 }
             }
             return list;
+        }
+
+        public List<Locations> GetAllUsersLocations(int userId)
+        {
+            List<Locations> listAllLocations = new List<Locations>();
+            List<Locations> listUsersLocations = new List<Locations>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT googlemap.ID, googlemap.cityname, googlemap.latitude,googlemap.longitude, googlemap.description, usersmaps.userID FROM googlemap INNER JOIN usersmaps ON googlemap.ID = usersmaps.mapId;", conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        listAllLocations.Add(new Locations()
+                        {
+
+                            CityName = reader["CityName"].ToString(),
+                            Latitude = Convert.ToDouble(reader["Latitude"]),
+                            Longitude = Convert.ToDouble(reader["Longitude"]),
+                            Description = reader["Description"].ToString(),
+                            UserId= Convert.ToInt32(reader["UserId"]),
+                        });
+                    }
+                }
+            }
+            foreach (Locations location in listAllLocations)
+                if (location.UserId == userId)
+                    listUsersLocations.Add(location);
+            return listUsersLocations;
         }
     }
 }

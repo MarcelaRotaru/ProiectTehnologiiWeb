@@ -1,4 +1,6 @@
-﻿namespace ProiectTW.Models
+﻿using System.Collections.Generic;
+
+namespace ProiectTW.Models
 {
     public class Locations
     {
@@ -13,5 +15,7 @@
         public double Longitude { get; set; }
 
         public string Description { get; set; }
+
+       public int UserId { get; set; }
     }
 }
